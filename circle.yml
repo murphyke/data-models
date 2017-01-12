@@ -64,7 +64,7 @@ test:
       "https://github.com/chop-dbhi/${APP_NAME}@${BRANCH}"; sleep 10; else
       docker run -d -p "8123:8123" --name dms dbhi/data-models -log error
       -path /opt/repos -repo
-      "https://github.com/${PULL_USER}/${PULL_REPO}@$(curl -s https://api.github.com/repos/chop-dbhi/${APP_NAME}/pulls/${PULL_NUM} | jq --raw-output '.head.ref')";
+      "https://github.com/${PULL_USER}/${PULL_REPO}@$(curl -L -s https://api.github.com/repos/chop-dbhi/${APP_NAME}/pulls/${PULL_NUM} | jq --raw-output '.head.ref')";
       sleep 10; fi
     # Run the dmsa container locally.
     - docker run -d -p "5000:80" --link dms:dms
