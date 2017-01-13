@@ -112,7 +112,7 @@ writer.close();
 
 ##### Oracle
 
-Oracle experts should feel free to chime in, but a very promising option is Oracle's new SQLcl command-line tool, available on an early-adopter basis as part of the [SQL Developer](http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html) family.  SQLcl is being touted as a modern replacement for SQL*Plus.
+Oracle experts should feel free to chime in, but a very promising option is Oracle's new [SQLcl command-line tool](http://www.oracle.com/technetwork/developer-tools/sqlcl/overview/index.html. SQLcl is being touted as a modern replacement for SQL*Plus.
 
 Sample usage:
 
@@ -123,7 +123,7 @@ select * from footable;
 spool off
 ```
 
-Another option is to use the [SQL Developer](http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html) GUI itself, which, although convenient, is not amenable to automation, as SQLcl is.
+Another option is to use the [SQL Developer](http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html) GUI, which, although convenient, is not amenable to automation, as SQLcl is.
 
 SQL Developer (and probably SQLcl) export CSV using the following conventions: all text fields are wrapped in quotes (even NULL values, because NULL and empty string are treated the same in Oracle), and no numeric fields are wrapped in quotes. Quotes within fields are escaped via doubling. Newlines within fields are included in the output.
 
