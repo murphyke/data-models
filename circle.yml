@@ -65,7 +65,7 @@ test:
       "https://github.com/${ORG_NAME}/${APP_NAME}@${BRANCH}" && sleep 10; else
       docker run -d -p "8123:8123" --name dms dbhi/data-models
       -path /opt/repos -repo
-      "https://github.com/${PULL_USER}/${PULL_REPO}@$(curl -L -s https://api.github.com/repos/${ORG_NAME}/${APP_NAME}/pulls/${PULL_NUM} | jq --raw-output '.head.ref')" &&
+      "https://github.com/${PULL_USER}/${PULL_REPO}@$(curl -s https://api.github.com/repos/${ORG_NAME}/${APP_NAME}/pulls/${PULL_NUM} | jq --raw-output '.head.ref')" &&
       sleep 10; fi
     # Simple verification of DMS
     - curl -s http://127.0.0.1:8123/?format=json | grep --silent 'Data Models Service' || (docker logs dms; false)
