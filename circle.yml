@@ -8,6 +8,7 @@ machine:
     BUILD_NUM: "${CIRCLE_BUILD_NUM}"
     COMMIT_SHA1: "${CIRCLE_SHA1}"
     BRANCH: "${CIRCLE_BRANCH}"
+    ORG_NAME: "${CIRCLE_PROJECT_USERNAME}"
     APP_NAME: "${CIRCLE_PROJECT_REPONAME}"
     VERSION: "${CIRCLE_BRANCH}_${CIRCLE_BUILD_NUM}_${CIRCLE_SHA1:0:8}"
     ARTIFACT_DIR: "${CIRCLE_ARTIFACTS}"
@@ -61,10 +62,10 @@ test:
     - if [ -z "${PULL_NUM}" ]; then 
       docker run -d -p "8123:8123" --name dms dbhi/data-models
       -path /opt/repos -repo
-      "https://github.com/chop-dbhi/${APP_NAME}@${BRANCH}" && sleep 10; else
+      "https://github.com/${ORG_NAME}/${APP_NAME}@${BRANCH}" && sleep 10; else
       docker run -d -p "8123:8123" --name dms dbhi/data-models
       -path /opt/repos -repo
-      "https://github.com/${PULL_USER}/${PULL_REPO}@$(curl -L -s https://api.github.com/repos/chop-dbhi/${APP_NAME}/pulls/${PULL_NUM} | jq --raw-output '.head.ref')" &&
+      "https://github.com/${PULL_USER}/${PULL_REPO}@$(curl -L -s https://api.github.com/repos/${ORG_NAME}/${APP_NAME}/pulls/${PULL_NUM} | jq --raw-output '.head.ref')" &&
       sleep 10; fi
     # Simple verification of DMS
     - curl -s http://127.0.0.1:8123/?format=json | grep --silent 'Data Models Servicex' || (docker logs dms; false)
