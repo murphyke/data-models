@@ -1,5 +1,7 @@
 # Data Models
 
+BOGOSITY
+
 Data models and vocabularies in the biomedical space.
 
 ## Persistent CSV Format
